@@ -27,7 +27,7 @@ func Run(destination string) {
 	/*
 		设置日志的输出格式并启动日志
 	*/
-	log = stlog.New(fileLog(destination), "GO", stlog.LstdFlags)
+	log = stlog.New(fileLog(destination), "[GO] ", stlog.LstdFlags)
 	log.Println("Starting the application...")
 }
 
