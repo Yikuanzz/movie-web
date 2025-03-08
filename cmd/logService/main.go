@@ -7,6 +7,7 @@ import (
 	"path"
 
 	"github.com/yikuanzz/distributed-system/log"
+	"github.com/yikuanzz/distributed-system/registry"
 	"github.com/yikuanzz/distributed-system/service"
 )
 
@@ -15,11 +16,16 @@ func main() {
 	log.Run(logPath)
 	host, port := "localhost", "8080"
 
+	r := registry.Registration{
+		ServiceName: "LogService",
+		ServiceURL:  fmt.Sprintf("http://%s:%s", host, port),
+	}
+
 	ctx, err := service.Start(
 		context.Background(),
-		"Log Service",
 		host,
 		port,
+		r,
 		func() {
 			log.RegisterHandler()
 		},
